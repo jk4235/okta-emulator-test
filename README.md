@@ -7,6 +7,8 @@ This project is a real Next.js app used as a browser scenario lab for the local 
 - Default authorization server with query callback + PKCE
 - Default authorization server with `form_post`
 - Org authorization server login flow
+- Official `@okta/okta-auth-js` redirect + PKCE flow
+- Public client / PKCE-only compatibility against the local Okta emulator
 - Group claim visibility through the `groups` scope
 - Invalid `client_id` authorize failure page
 - Invalid `redirect_uri` authorize failure page
@@ -53,14 +55,18 @@ The home page is the scenario gallery. Each card opens a different real browser 
 
 There is also a dedicated official SDK page at `/official-sdk`.
 
-It uses `@okta/okta-auth-js` directly in the browser to validate:
+It uses `@okta/okta-auth-js` directly in the browser to validate the emulator's public-client compatibility:
 
 - `signInWithRedirect()`
 - PKCE redirect login
+- `token_endpoint_auth_method: "none"`
+- token exchange without `client_secret`
 - callback parsing with the official SDK
 - token manager storage
 - reading user claims from the SDK
 - SDK-triggered logout
+
+The official SDK route is intended to prove that the emulator now supports the same browser-side redirect + PKCE flow that a real Okta public client uses.
 
 Manual flow:
 
@@ -72,6 +78,13 @@ Manual flow:
 6. Confirm tokens and user info are visible on the page
 7. Click `Sign out with official SDK`
 8. Confirm the browser returns to `/official-sdk`
+9. Confirm the page shows `isAuthenticated: false` and cleared token state after logout
+
+### Common Troubleshooting
+
+If the callback page shows `The token signature is not valid`, clear site data or open a fresh private window and try again.
+
+This usually happens after restarting the local emulator while the browser still has cached Okta SDK metadata or tokens from a previous session.
 
 ### 1. Default AS Query + PKCE
 
@@ -148,3 +161,5 @@ It also seeds a second OAuth client for the Org authorization server:
 
 - `okta-test-app` for `default`
 - `okta-org-test-app` for `org`
+
+The default authorization server client is also used by the `/official-sdk` page as a public PKCE client.
