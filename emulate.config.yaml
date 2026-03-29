@@ -1,0 +1,49 @@
+okta:
+  users:
+    - okta_id: 00u_alice
+      login: alice@example.com
+      email: alice@example.com
+      first_name: Alice
+      last_name: Johnson
+    - okta_id: 00u_bob
+      login: bob@example.com
+      email: bob@example.com
+      first_name: Bob
+      last_name: Smith
+  groups:
+    - okta_id: 00g_admins
+      name: Admins
+      description: Administrative users
+    - okta_id: 00g_engineers
+      name: Engineers
+      description: Engineering team
+  authorization_servers:
+    - id: default
+      name: default
+      audiences:
+        - api://default
+  oauth_clients:
+    - client_id: okta-test-app
+      client_secret: test-secret-123
+      name: Okta Emulator Test App
+      redirect_uris:
+        - http://localhost:3000/
+        - http://localhost:3000/dashboard
+        - http://localhost:3000/api/auth/callback
+      auth_server_id: default
+    - client_id: okta-org-test-app
+      client_secret: org-secret-123
+      name: Okta Emulator Org Test App
+      redirect_uris:
+        - http://localhost:3000/
+        - http://localhost:3000/api/auth/callback
+      auth_server_id: org
+  group_memberships:
+    - user_okta_id: 00u_alice
+      group_okta_id: 00g_everyone
+    - user_okta_id: 00u_alice
+      group_okta_id: 00g_admins
+    - user_okta_id: 00u_bob
+      group_okta_id: 00g_everyone
+    - user_okta_id: 00u_bob
+      group_okta_id: 00g_engineers
