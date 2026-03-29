@@ -49,6 +49,30 @@ The home page is the scenario gallery. Each card opens a different real browser 
 
 ## Browser Scenario Checklist
 
+## Official SDK Check
+
+There is also a dedicated official SDK page at `/official-sdk`.
+
+It uses `@okta/okta-auth-js` directly in the browser to validate:
+
+- `signInWithRedirect()`
+- PKCE redirect login
+- callback parsing with the official SDK
+- token manager storage
+- reading user claims from the SDK
+- SDK-triggered logout
+
+Manual flow:
+
+1. Open `http://localhost:3000/official-sdk`
+2. Click `Sign in with official SDK`
+3. On the emulator page, select a seeded user
+4. Confirm the browser returns to `/official-sdk/callback`
+5. Confirm it redirects back to `/official-sdk`
+6. Confirm tokens and user info are visible on the page
+7. Click `Sign out with official SDK`
+8. Confirm the browser returns to `/official-sdk`
+
 ### 1. Default AS Query + PKCE
 
 - Open the `Default AS Query + PKCE` card on the home page.

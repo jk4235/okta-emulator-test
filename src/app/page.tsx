@@ -138,6 +138,54 @@ export default async function Home() {
             ))}
           </div>
         </section>
+
+        <section className="space-y-4">
+          <span className="inline-flex rounded-full border border-panel-border bg-panel px-3 py-1 text-sm text-muted">
+            Official SDK Validation
+          </span>
+          <article className="rounded-3xl border border-panel-border bg-panel p-6 shadow-sm">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-panel-border px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted">
+                Official library
+              </span>
+              <span className="rounded-full border border-panel-border px-3 py-1 text-xs text-muted">
+                @okta/okta-auth-js
+              </span>
+              <span className="rounded-full border border-panel-border px-3 py-1 text-xs text-muted">
+                Redirect + PKCE
+              </span>
+            </div>
+
+            <div className="mt-4 space-y-3">
+              <h2 className="text-2xl font-semibold">
+                Test the emulator with the official Okta Auth JS SDK
+              </h2>
+              <p className="text-sm leading-6 text-muted">
+                This route does not use the app&apos;s handwritten OAuth flow. It
+                creates a real browser-side `OktaAuth` client, runs
+                `signInWithRedirect()`, parses the callback with the official SDK,
+                and displays the stored tokens and user claims.
+              </p>
+            </div>
+
+            <div className="mt-6 space-y-3 text-sm leading-6">
+              <div>
+                <p className="font-medium text-muted">What this proves</p>
+                <p>
+                  Whether your emulator is compatible with the official Okta
+                  browser SDK for the standard redirect-based login flow.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="/official-sdk"
+              className="mt-6 inline-flex items-center justify-center rounded-2xl bg-accent px-4 py-3 font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              Open official SDK test
+            </Link>
+          </article>
+        </section>
       </section>
     </main>
   );

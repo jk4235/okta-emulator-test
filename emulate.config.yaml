@@ -30,6 +30,8 @@ okta:
         - http://localhost:3000/
         - http://localhost:3000/dashboard
         - http://localhost:3000/api/auth/callback
+        - http://localhost:3000/official-sdk
+        - http://localhost:3000/official-sdk/callback
       auth_server_id: default
     - client_id: okta-org-test-app
       client_secret: org-secret-123
